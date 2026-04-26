@@ -1,23 +1,25 @@
-SUPPORTED = ['jpg', 'png', 'mp4', 'avi']
-
+IMAGES = ['jpg', 'png']
+VIDEOS = ['mp4', 'mov']  
 def process_media(file_path):
     if '.' not in file_path:
         return print("[Помилка] Файл повинен мати розширення!")
-
-    # Спрощений поділ: stem — назва, ext — розширення без крапки
     stem, ext = file_path.rsplit('.', 1)
     ext = ext.lower()
 
-    if ext in SUPPORTED:
-        print(f"[OK] Формат .{ext} підтримується.")
-        print(f"[ГОТОВО] Файл '{stem}_compressed.{ext}' збережено.")
+    if ext in IMAGES:
+        print(f"[OK] Знайдено зображення .{ext}. Оптимізуємо пікселі...")
+    elif ext in VIDEOS:
+        print(f"[OK] Знайдено відео .{ext}. Стискаємо кадри...")
     else:
-        print(f"[УВАГА] Формат .{ext} не підтримується. Доступні: {', '.join(SUPPORTED)}")
+        all_formats = IMAGES + VIDEOS
+        print(f"[УВАГА] Формат .{ext} не підтримується. Доступні: {', '.join(all_formats)}")
+        return
 
-# Основна логіка без зайвих функцій
+    print(f"[ГОТОВО] Файл '{stem}_compressed.{ext}' збережено.")
+
 user_file = input("Введіть назву файлу: ").strip()
 
 if user_file:
     process_media(user_file)
 else:
-    print("Порожнє введення.")
+    print("Назва файлу не може бути порожньою.")
