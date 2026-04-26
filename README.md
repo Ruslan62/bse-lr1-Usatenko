@@ -4,13 +4,12 @@
 
 ## Автор
 
-
-- **Усатенко Руслан ПЗПІ-25-2**, ПЗПІ-25-2
-- Email: ruslan.usatenko@nure.ua 
+- **Усатенко Руслан**, Група ПЗПІ-25-2
+- Email: ruslan.usatenko@nure.ua
 
 ## Технології
 
-- Мова програмування: Python 3.12
+- Мова програмування: Python 3.13.7
 - IDE: Visual Studio Code 1.117.0
 - VCS: Git 2.50.1 + GitHub
 - AI-асистент: Codeium
