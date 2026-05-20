@@ -1,0 +1,51 @@
+@startuml
+
+class Account {
+  - id : int
+  - username : String
+  + register() : boolean
+  + createCollection(name : String) : void
+}
+
+class PremiumAccount {
+  - premiumUntil : Date
+  - maxUploadSize : int
+  + changeBitrate(assetId : int, bitrate : int) : void
+}
+
+class AssetCollection {
+  - collectionId : int
+  - collectionName : String
+  - createdAt : Date
+  + addAsset(asset : MediaAsset) : void
+  + removeAsset(assetId : int) : void
+}
+
+class MediaAsset {
+  - assetId : int
+  - assetName : String
+  - sizeBytes : int
+  - isEncrypted : boolean
+  + getExtension() : String
+  + encryptAsset(config : CipherConfiguration) : void
+}
+
+class AssetMetadata {
+  - durationSec : int
+  - resolution : String
+  - codec : String
+  + extractMetadata() : void
+}
+
+class CipherConfiguration {
+  - algorithm : String
+  - keySize : int
+  - transformation : String
+  + generateKey() : String
+}
+
+Account <|-- PremiumAccount : inherits
+Account "1" -- "0..*" AssetCollection : creates
+AssetCollection "0..1" o-- "0..*" MediaAsset : groups
+MediaAsset "1" -- "0..1" CipherConfiguration : protected by
+@enduml
