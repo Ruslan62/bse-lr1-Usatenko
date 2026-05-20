@@ -1,0 +1,30 @@
+@startuml
+actor "Користувач" as U
+participant ":Account" as Acc
+participant ":AssetCollection" as Coll
+participant ":MediaAsset" as Asset
+participant ":MediaMetadata" as Meta
+
+U -> Acc : register()
+activate Acc
+Acc --> U : true
+deactivate Acc
+U -> Coll : addAsset(mediaAsset)
+activate Coll
+Coll --> U : asset
+deactivate Coll
+
+U -> Asset : getExtension()
+activate Asset
+Asset --> U : assetInfo
+deactivate Asset
+
+alt asset.sizeBytes <= 100
+  U -> Meta : extractMetadata()
+  activate Meta
+  Meta --> U : metadataInfo
+  deactivate Meta
+else file too large
+  U <-- Coll : "Файл завеликий (ліміт 100 МБ)"
+end
+@enduml
