@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+actor "Користувач" as User
+actor "Користувач з преміумом" as PremiumUser
+actor "Адміністратор" as Admin
+PremiumUser --|> User
+
+rectangle "PrivaPress - обробка файлів" {
+    usecase "Імпортувати медіафайл" as UC01
+    usecase "Перевірити ліміти (розмір/формат)" as UC02
+    usecase "Завантажити оброблений файл" as UC03
+    usecase "Пакетний імпорт файлів" as UC04
+    usecase "Очистити застарілі файли" as UC05
+    usecase "Застосувати водяний знак" as UC06
+    usecase "Вибрати якість (Low/High)" as UC07
+}
+
+User --> UC01
+User --> UC03
+UC01 ..> UC02 : <<include>>
+UC01 ..> UC06 : <<extend>>
+UC01 ..> UC07 : <<extend>>
+
+PremiumUser --> UC04
+Admin --> UC05
+@enduml 
