@@ -47,5 +47,6 @@ class CipherConfiguration {
 Account <|-- PremiumAccount : inherits
 Account "1" -- "0..*" AssetCollection : creates
 AssetCollection "0..1" o-- "0..*" MediaAsset : groups
+MediaAsset "1" *-- "1" AssetMetadata : contains
 MediaAsset "1" -- "0..1" CipherConfiguration : protected by
 @enduml
