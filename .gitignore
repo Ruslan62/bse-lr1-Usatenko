@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Тести та звіти покриття (Pytest & Coverage)
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Технічні файли Python
+__pycache__/
+*.pyc
