@@ -17,4 +17,4 @@ jobs:
         run: pip install pytest pytest-cov
 
       - name: Execute pytest with coverage
-        run: pytest --cov=src.main.cipher_configuration --cov-fail-under=80 src/test/
+        run: python -m pytest --cov=src.main.cipher_configuration --cov-fail-under=80 src/test/
