@@ -144,3 +144,34 @@ def test_process_batch_alphanumeric():
     # Assert
     assert report["processed"] == 2
     assert report["failed"] == 0
+
+    # ІТЕРЦІЙНЕ ПОКРАЩЕННЯ (ДОДАТКОВІ ТЕСТИ ДЛЯ ЗБІЛЬШЕННЯ ПОКРИТТЯ)
+
+def test_init_rsa_success():
+    # Техніка: EP (Позитивний)
+
+    # Arrange
+    algorithm = "RSA"
+    key_size = 2048
+
+    # Act
+    config = CipherConfiguration(algorithm, key_size)
+
+    # Assert
+    assert config.algorithm == "RSA"
+    assert config.key_size == 2048  
+
+
+def test_process_batch_with_error():
+    # Техніка: EP (Негативний)
+
+    # Arrange
+    config = CipherConfiguration("AES", 128)
+    data_packets = ["valid", 123]  
+
+    # Act
+    report = config.process_batch_data(data_packets)
+
+    # Assert
+    assert report["processed"] == 1
+    assert report["failed"] == 1 
