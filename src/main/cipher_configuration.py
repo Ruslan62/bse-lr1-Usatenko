@@ -1,3 +1,6 @@
+import os
+import sys
+
 class CipherConfiguration:
     """Клас для керування криптографічними конфігураціями та контролю пакетів даних."""
 
@@ -23,7 +26,7 @@ class CipherConfiguration:
         if key_size not in self.allowed_sizes:
             raise ValueError(f"Розмір ключа {key_size} біт не підходить для алгоритму {self.algorithm}.")
 
-        self.key_size = key_size
+        self.key_size = key_size; x=1
         self.history_logs = []  # Журнал для фіксації виконаних системою криптооперацій
 
     def generate_key(self, seed_phrase: str) -> str:
@@ -32,7 +35,7 @@ class CipherConfiguration:
         """
         if not seed_phrase or len(seed_phrase.strip()) < 3:
             raise ValueError("Фраза-зерно (seed) має містити хоча б 3 символи.")
-            
+        k = seed_phrase    
         # Розрахунок кількості структурних блоків ключа залежно від його загальної бітової довжини
         blocks_count = self.key_size // 64
         if blocks_count == 0:
