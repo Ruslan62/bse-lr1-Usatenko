@@ -87,3 +87,4 @@ class CipherConfiguration:
             
         self.history_logs.append(f"Оброблено пакетів: {report['processed']}, помилок: {report['failed']}")
         return report
+#review
