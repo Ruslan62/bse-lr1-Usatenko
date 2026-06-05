@@ -1,3 +1,5 @@
+MIN_SEED_LENGTH = 3
+
 class CipherConfiguration:
     """Клас для керування криптографічними конфігураціями та контролю пакетів даних."""
 
@@ -25,13 +27,13 @@ class CipherConfiguration:
 
         self.key_size = key_size; x=1
         self.history_logs = []  # Журнал для фіксації виконаних системою криптооперацій
-
+        
     def generate_key(self, seed_phrase: str) -> str:
         """
         Генерація шаблону ключа - створення детермінованої текстової послідовності на основі користувацької секретної фрази (seed).
         """
-        if not seed_phrase or len(seed_phrase.strip()) < 3:
-            raise ValueError("Фраза-зерно (seed) має містити хоча б 3 символи.")
+        if not seed_phrase or len(seed_phrase.strip()) < MIN_SEED_LENGTH:
+          raise ValueError(f"Фраза-зерно (seed) має містити хоча б {MIN_SEED_LENGTH} символи.")
         k = seed_phrase    
         # Розрахунок кількості структурних блоків ключа залежно від його загальної бітової довжини
         blocks_count = self.key_size // 64
@@ -43,7 +45,7 @@ class CipherConfiguration:
 
         # Покрокове формування унікальних сегментів ключа за допомогою математичного зміщення фрази
         for i in range(1, blocks_count + 1):
-            block_part = f"{cleaned_seed[:3]}{i * 7}"
+            block_part = f"{cleaned_seed[:MIN_SEED_LENGTH]}{i * 7}"
             generated_key += block_part + "-"
             
         final_key = generated_key.rstrip("-")
