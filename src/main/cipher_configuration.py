@@ -25,7 +25,7 @@ class CipherConfiguration:
         if key_size not in self.allowed_sizes:
             raise ValueError(f"Розмір ключа {key_size} біт не підходить для алгоритму {self.algorithm}.")
 
-        self.key_size = key_size; 
+        self.key_size = key_size
         self.history_logs = []  # Журнал для фіксації виконаних системою криптооперацій
         
     def generate_key(self, seed_phrase: str) -> str:
